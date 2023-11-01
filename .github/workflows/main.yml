@@ -23,12 +23,12 @@ jobs:
 
     - name: Build Create Service Docker Image
       run: |
-        cd flask_blog_create
+        cd Assignment5 - CI:CD/flask_blog_create
         docker build -t create-service .
 
     - name: Build Read Service Docker Image
       run: |
-        cd flask_blog_read
+        cd Assignment5 - CI:CD/flask_blog_read
         docker build -t read-service .
 
     # - name: Build Update Service Docker Image
@@ -43,5 +43,5 @@ jobs:
 
     - name: Build UI Service Docker Image
       run: |
-        cd flask_blog_ui
+        cd Assignment5 - CI:CD/flask_blog_ui
         docker build -t ui-service .
