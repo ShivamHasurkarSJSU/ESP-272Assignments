@@ -2,46 +2,46 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   setup-build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Setup Docker
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y apt-transport-https apt-utils ca-certificates curl software-properties-common
-        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-        sudo apt-get update
-        sudo apt-get install -y docker-ce
+      - name: Setup Docker
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y apt-transport-https apt-utils ca-certificates curl software-properties-common
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+          sudo apt-get update
+          sudo apt-get install -y docker-ce
 
-    - name: Build Create Service Docker Image
-      run: |
-        cd Assignment5 - CI:CD/flask_blog_create
-        docker build -t create-service .
+      - name: Build Create Service Docker Image
+        run: |
+          cd Assignment5_CI_CD/flask_blog_create
+          docker build -t create-service .
 
-    - name: Build Read Service Docker Image
-      run: |
-        cd Assignment5 - CI:CD/flask_blog_read
-        docker build -t read-service .
+      - name: Build Read Service Docker Image
+        run: |
+          cd Assignment5_CI_CD/flask_blog_read
+          docker build -t read-service .
 
-    # - name: Build Update Service Docker Image
-    #   run: |
-    #     cd flask_blog_update
-    #     docker build -t update-service .
+      # - name: Build Update Service Docker Image
+      #   run: |
+      #     cd flask_blog_update
+      #     docker build -t update-service .
 
-    # - name: Build Delete Service Docker Image
-    #   run: |
-    #     cd flask_blog_delete
-    #     docker build -t delete-service .
+      # - name: Build Delete Service Docker Image
+      #   run: |
+      #     cd flask_blog_delete
+      #     docker build -t delete-service .
 
-    - name: Build UI Service Docker Image
-      run: |
-        cd Assignment5 - CI:CD/flask_blog_ui
-        docker build -t ui-service .
+      - name: Build UI Service Docker Image
+        run: |
+          cd Assignment5_CI_CD/flask_blog_ui
+          docker build -t ui-service .
