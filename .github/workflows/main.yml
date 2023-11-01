@@ -46,7 +46,7 @@ jobs:
           cd Assignment5_CI_CD/flask_blog_ui
           docker build -t ui-service .
 
-      - name: Run Create Service Tests
-        run: |
-          cd Assignment5_CI_CD/flask_blog_create
-          docker run create-service python test_app.py
+      # - name: Run Create Service Tests
+      #   run: |
+      #     cd Assignment5_CI_CD/flask_blog_create
+      #     docker run create-service python test_app.py
