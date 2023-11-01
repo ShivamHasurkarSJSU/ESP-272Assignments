@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: create-microservice
+  labels:
+    app: create-microservice
+spec:
+  replicas: 1
+  selector:
+   matchLabels:
+     app: create-microservice
+  template:
+   metadata:
+     labels:
+      app: create-microservice
+   spec:
+    containers:
+    - name: create-microservice
+      image: create-microservice-image-docker:0.0.1
+      imagePullPolicy: IfNotPresent
+      ports:
+      - containerPort: 5000

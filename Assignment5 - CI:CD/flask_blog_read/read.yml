@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: read-microservice
+  labels:
+    app: read-microservice
+spec:
+  replicas: 1
+  selector:
+   matchLabels:
+     app: read-microservice
+  template:
+   metadata:
+     labels:
+      app: read-microservice
+   spec:
+    containers:
+    - name: read-microservice
+      image: read-microservice-image-docker:0.0.1
+      imagePullPolicy: IfNotPresent
+      ports:
+      - containerPort: 5002
