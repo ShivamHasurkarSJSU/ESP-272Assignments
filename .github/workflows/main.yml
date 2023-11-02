@@ -36,10 +36,10 @@ jobs:
       #     cd Assignment5_CI_CD/flask_blog_update
       #     docker build -t update-service .
 
-      # - name: Build Delete Service Docker Image
-      #   run: |
-      #     cd Assignment5_CI_CD/flask_blog_delete
-      #     docker build -t delete-service .
+      - name: Build Delete Service Docker Image
+        run: |
+          cd Assignment5_CI_CD/flask_blog_delete
+          docker build -t delete-service .
 
       - name: Build UI Service Docker Image
         run: |
