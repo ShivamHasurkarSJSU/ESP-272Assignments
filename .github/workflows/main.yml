@@ -31,10 +31,10 @@ jobs:
           cd Assignment5_CI_CD/flask_blog_read
           docker build -t read-service .
 
-      # - name: Build Update Service Docker Image
-      #   run: |
-      #     cd Assignment5_CI_CD/flask_blog_update
-      #     docker build -t update-service .
+      - name: Build Update Service Docker Image
+        run: |
+          cd Assignment5_CI_CD/flask_blog_update
+          docker build -t update-service .
 
       - name: Build Delete Service Docker Image
         run: |
@@ -50,3 +50,29 @@ jobs:
       #   run: |
       #     cd Assignment5_CI_CD/flask_blog_create
       #     docker run create-service python test_app.py
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+
+      - name: Push Create Service Image to Docker Hub
+        run: |
+          docker tag create-service:latest ${{ secrets.DOCKERHUB_USERNAME }}/create-service:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/create-service:latest
+
+      - name: Push Read Service Image to Docker Hub
+        run: |
+          docker tag read-service:latest ${{ secrets.DOCKERHUB_USERNAME }}/read-service:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/read-service:latest
+
+      - name: Push Update Service Image to Docker Hub
+        run: |
+          docker tag update-service:latest ${{ secrets.DOCKERHUB_USERNAME }}/update-service:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/update-service:latest
+
+      - name: Push Delete Service Image to Docker Hub
+        run: |
+          docker tag delete-service:latest ${{ secrets.DOCKERHUB_USERNAME }}/delete-service:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/delete-service:latest
