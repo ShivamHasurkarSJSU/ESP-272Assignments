@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: update-microservice
+  labels:
+    app: update-microservice
+spec:
+  replicas: 1
+  selector:
+   matchLabels:
+     app: update-microservice
+  template:
+   metadata:
+     labels:
+      app: update-microservice
+   spec:
+    containers:
+    - name: update-microservice
+      image: update-microservice-image-docker:0.0.1
+      imagePullPolicy: IfNotPresent
+      ports:
+      - containerPort: 5003
